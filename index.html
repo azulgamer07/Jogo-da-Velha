@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jogo da Velha</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <!-- MENU -->
+      <div id="menu" class="menu">
+        <h1>Jogo da Velha</h1>
+
+        <button type="button" onclick="startGame('pvp')">Multiplayer</button>
+
+        <h3>Contra IA</h3>
+
+        <!-- MODOS PRINCIPAIS -->
+        <div class="buttons">
+          <button type="button" onclick="startGame('easy')">Fácil</button>
+          <button type="button" onclick="startGame('medium')">Médio</button>
+          <button type="button" onclick="toggleHardMenu()">Hard</button>
+        </div>
+
+        <!-- SUBMENU HARD -->
+        <div id="hardOptions" class="buttons hidden">
+          <button type="button" onclick="startGame('hard-3')">3x3</button>
+          <button type="button" onclick="startGame('hard-5')">5x5</button>
+        </div>
+      </div>
+
+      <!-- GAME -->
+      <div id="game" class="game hidden">
+        <div id="resultScreen" class="result hidden">
+          <div style="font-size:40px">🏆</div>
+          <h2 id="resultText"></h2>
+          <button type="button" onclick="resetGame()">Jogar novamente</button>
+        </div>
+
+        <div id="turn">Vez: X</div>
+
+        <div id="score">
+          X: <span id="scoreX">0</span> | O: <span id="scoreO">0</span>
+          <button type="button" onclick="resetScore()">Reset</button>
+        </div>
+
+        <!-- 🔥 acessibilidade -->
+        <div id="board" aria-label="Tabuleiro do jogo"></div>
+
+        <div class="actions">
+          <button type="button" onclick="resetGame()">Reiniciar</button>
+          <button type="button" onclick="goMenu()">Voltar</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
