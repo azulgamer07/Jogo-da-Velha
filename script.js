@@ -9,9 +9,20 @@ let isAITurn = false;
 let scoreX = 0;
 let scoreO = 0;
 
-// ---------- 🔥 TOGGLE HARD ----------
-function toggleHardMenu() {
-  document.getElementById("hardOptions").classList.toggle("hidden");
+// ---------- 🔥 NOVO MENU DINÂMICO ----------
+function toggleMode(mode) {
+  const sections = ["pvpOptions", "easyOptions", "mediumOptions", "hardOptions"];
+
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    if (id.startsWith(mode)) {
+      el.classList.toggle("hidden");
+    } else {
+      el.classList.add("hidden");
+    }
+  });
 }
 
 // ---------- SCORE ----------
@@ -38,16 +49,12 @@ function resetScore() {
 
 // ---------- START ----------
 function startGame(mode) {
-  if (mode === "hard-5") {
-    boardSize = 5;
-    gameMode = "hard";
-  } else if (mode === "hard-3") {
-    boardSize = 3;
-    gameMode = "hard";
-  } else {
-    gameMode = mode;
-    boardSize = 3;
-  }
+  const parts = mode.split("-");
+
+  gameMode = parts[0];
+  boardSize = parts[1] ? parseInt(parts[1]) : 3;
+
+  if (!boardSize || boardSize < 3) boardSize = 3;
 
   loadScore();
 
@@ -76,7 +83,6 @@ function createBoard() {
 
     cell.onclick = () => onPlayerMove(i);
 
-    // 🔥 PREVIEW
     cell.onmouseenter = () => {
       if (board[i] === "" && !isAITurn && gameActive) {
         cell.textContent = currentPlayer;
@@ -105,7 +111,6 @@ function onPlayerMove(i) {
 
   board[i] = currentPlayer;
 
-  // remove preview
   document.querySelectorAll(".cell").forEach(c => {
     c.classList.remove("preview");
   });

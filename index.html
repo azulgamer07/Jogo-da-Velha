@@ -13,18 +13,39 @@
       <div id="menu" class="menu">
         <h1>Jogo da Velha</h1>
 
-        <button type="button" onclick="startGame('pvp')">Multiplayer</button>
-
-        <h3>Contra IA</h3>
-
-        <!-- MODOS PRINCIPAIS -->
+        <!-- 🔥 MULTIPLAYER -->
+        <h3>Multiplayer</h3>
         <div class="buttons">
-          <button type="button" onclick="startGame('easy')">Fácil</button>
-          <button type="button" onclick="startGame('medium')">Médio</button>
-          <button type="button" onclick="toggleHardMenu()">Hard</button>
+          <button type="button" onclick="toggleMode('pvp')">Multiplayer</button>
         </div>
 
-        <!-- SUBMENU HARD -->
+        <div id="pvpOptions" class="buttons hidden">
+          <button type="button" onclick="startGame('pvp-3')">3x3</button>
+          <button type="button" onclick="startGame('pvp-5')">5x5</button>
+        </div>
+
+        <!-- 🔥 IA -->
+        <h3>Contra IA</h3>
+
+        <div class="buttons">
+          <button type="button" onclick="toggleMode('easy')">Fácil</button>
+          <button type="button" onclick="toggleMode('medium')">Médio</button>
+          <button type="button" onclick="toggleMode('hard')">Hard</button>
+        </div>
+
+        <!-- EASY -->
+        <div id="easyOptions" class="buttons hidden">
+          <button type="button" onclick="startGame('easy-3')">3x3</button>
+          <button type="button" onclick="startGame('easy-5')">5x5</button>
+        </div>
+
+        <!-- MEDIUM -->
+        <div id="mediumOptions" class="buttons hidden">
+          <button type="button" onclick="startGame('medium-3')">3x3</button>
+          <button type="button" onclick="startGame('medium-5')">5x5</button>
+        </div>
+
+        <!-- HARD -->
         <div id="hardOptions" class="buttons hidden">
           <button type="button" onclick="startGame('hard-3')">3x3</button>
           <button type="button" onclick="startGame('hard-5')">5x5</button>
@@ -46,7 +67,6 @@
           <button type="button" onclick="resetScore()">Reset</button>
         </div>
 
-        <!-- 🔥 acessibilidade -->
         <div id="board" aria-label="Tabuleiro do jogo"></div>
 
         <div class="actions">
